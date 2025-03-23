@@ -266,7 +266,33 @@ button:hover {
     background-color: #85c1fa;
 }
 
-/* 📱 Mobile (max-width: 600px) */
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .content-wrapper {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    nav ul li {
+        text-align: center;
+    }
+
+    .navbar .social-links {
+        margin-top: 10px;
+    }
+}
+
 @media (max-width: 600px) {
     header h1 {
         font-size: 2rem;
@@ -277,19 +303,46 @@ button:hover {
     }
 
     .navbar {
-        flex-direction: column;
-        text-align: center;
+        flex-direction: row; 
+        justify-content: space-between; 
+        align-items: center; 
+        padding: 10px; 
     }
 
-    .nav-links {
-        flex-direction: column;
-        gap: 5px;
+    nav ul {
+        flex-direction: row;
+        justify-content: flex-start; 
+        flex-wrap: wrap;
+        width: auto;
+        padding: 0;
+        margin: 0;
     }
 
-    .nav-links a {
-        font-size: 1rem;
-        padding: 8px;
+    nav ul li {
+        margin: 0; 
     }
+
+    nav ul li a {
+        padding: 8px 10px; 
+        font-size: 0.9rem; 
+        white-space: nowrap; 
+    }
+
+    .navbar .social-links ul {
+        display: flex; 
+        justify-content: flex-end; 
+        padding: 0;
+        margin: 0;
+    }
+
+    .navbar .social-links li {
+        margin: 0 5px; 
+    }
+
+    .navbar .social-links li a {
+        font-size: 1.2rem; 
+    }
+}
 
     .profile-img {
         width: 90px;
@@ -307,36 +360,9 @@ button:hover {
     button {
         font-size: 1rem;
     }
-}
 
-/* 📟 Tablet (601px - 1024px) */
-@media (min-width: 601px) and (max-width: 1024px) {
-    .navbar {
-        justify-content: center;
-        gap: 15px;
+    textarea {
+        width: 90%;
+        display: block;
+        margin: 10px auto;
     }
-
-    .nav-links a {
-        font-size: 1.1rem;
-    }
-
-    .profile-img {
-        width: 100px;
-        height: 100px;
-    }
-
-    h1 {
-        font-size: 2rem;
-    }
-}
-
-/* 🖥️ Large Screens (Above 1024px) */
-@media (min-width: 1025px) {
-    .navbar {
-        justify-content: space-between;
-    }
-
-    .nav-links a {
-        font-size: 1.2rem;
-    }
-}
