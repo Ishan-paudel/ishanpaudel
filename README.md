@@ -172,6 +172,7 @@ This portfolio is continuously updated with:
 
 ---
 
-**Built with ❤️ by Ishan Paudel**
+**Built by Ishan Paudel**
 
-*Last updated: December 2024*
+
+
