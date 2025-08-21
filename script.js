@@ -1,5 +1,45 @@
 // Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', function() {
+
+    // Mobile navigation toggle functionality
+    const navToggle = document.querySelector('.nav-toggle');
+    const navList = document.querySelector('.nav-list');
+    
+    if (navToggle && navList) {
+        navToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            navList.classList.toggle('show');
+            
+            // Change icon based on menu state
+            const icon = this.querySelector('i');
+            if (navList.classList.contains('show')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+                document.body.style.overflow = 'hidden'; // Prevent background scroll
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    }
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (navList && navToggle && navList.classList.contains('show') && 
+            !navList.contains(e.target) && 
+            !navToggle.contains(e.target)) {
+            navList.classList.remove('show');
+            const icon = navToggle.querySelector('i');
+            if (icon) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+            document.body.style.overflow = 'auto';
+        }
+    });
+    
     // Smooth scrolling for navigation links
     const navLinks = document.querySelectorAll('.nav-link');
     
@@ -9,6 +49,17 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
+            
+            // Close mobile menu when a link is clicked
+            if (window.innerWidth <= 768 && navList && navList.classList.contains('show')) {
+                navList.classList.remove('show');
+                const icon = navToggle ? navToggle.querySelector('i') : null;
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+                document.body.style.overflow = 'auto';
+            }
             
             if (targetSection) {
                 targetSection.scrollIntoView({
@@ -28,22 +79,37 @@ document.addEventListener('DOMContentLoaded', function() {
         let current = '';
         
         sections.forEach(section => {
-            const sectionTop = section.offsetTop;
+            const sectionTop = section.offsetTop - 100; // Account for fixed nav
             const sectionHeight = section.clientHeight;
             
-            if (window.pageYOffset >= sectionTop - 200) {
+            if (window.pageYOffset >= sectionTop - 100) {
                 current = section.getAttribute('id');
             }
         });
         
-        updateActiveNavLink('#' + current);
+        if (current) {
+            updateActiveNavLink('#' + current);
+        }
     });
     
-    // Form submission handling
+    // Set initial active state
+    updateActiveNavLink('#home');
+    
+    // Form submission handling with animation
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // Get form elements
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnLoading = submitBtn.querySelector('.btn-loading');
+            
+            // Show loading state
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'inline-block';
+            submitBtn.disabled = true;
             
             // Get form data
             const formData = new FormData(this);
@@ -55,19 +121,161 @@ document.addEventListener('DOMContentLoaded', function() {
             // Basic validation
             if (!name || !email || !subject || !message) {
                 showNotification('Please fill in all fields.', 'error');
+                btnText.style.display = 'inline-block';
+                btnLoading.style.display = 'none';
+                submitBtn.disabled = false;
                 return;
             }
             
             if (!isValidEmail(email)) {
                 showNotification('Please enter a valid email address.', 'error');
+                btnText.style.display = 'inline-block';
+                btnLoading.style.display = 'none';
+                submitBtn.disabled = false;
                 return;
             }
             
-            // Simulate form submission (replace with actual form handling)
-            showNotification('Thank you for your message! I\'ll get back to you soon.', 'success');
-            this.reset();
+            // Simulate form submission (replace with actual AJAX call in production)
+            setTimeout(() => {
+                // Hide loading state
+                btnText.style.display = 'inline-block';
+                btnLoading.style.display = 'none';
+                submitBtn.disabled = false;
+                
+                // Show success message
+                const formGroups = contactForm.querySelectorAll('.form-group');
+                formGroups.forEach(group => {
+                    group.style.opacity = '0.5';
+                    group.style.transform = 'scale(0.95)';
+                });
+                
+                // Create success message
+                const successMessage = document.createElement('div');
+                successMessage.className = 'form-success-message';
+                successMessage.innerHTML = `
+                    <div class="success-animation">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Thank You!</h3>
+                    <p>Your message has been sent successfully! I will get back to you soon.</p>
+                    <button class="hero-btn secondary" id="resetFormBtn">Send Another Message</button>
+                `;
+                
+                // The success message styles are now handled by CSS classes
+                
+                // Add success message with animation
+                contactForm.appendChild(successMessage);
+                setTimeout(() => {
+                    successMessage.style.opacity = '1';
+                    successMessage.style.transform = 'translateY(0)';
+                }, 10);
+                
+                // Reset form button
+                const resetBtn = document.getElementById('resetFormBtn');
+                if (resetBtn) {
+                    resetBtn.addEventListener('click', function() {
+                        // Remove success message
+                        successMessage.style.opacity = '0';
+                        successMessage.style.transform = 'translateY(20px)';
+                        
+                        setTimeout(() => {
+                            successMessage.remove();
+                            
+                            // Reset form
+                            contactForm.reset();
+                            
+                            // Restore form groups
+                            formGroups.forEach(group => {
+                                group.style.opacity = '1';
+                                group.style.transform = 'scale(1)';
+                            });
+                        }, 300);
+                    });
+                }
+            }, 2000); // Simulate 2 second delay for form submission
         });
     }
+    
+    // Blog filtering and search functionality
+const filterButtons = document.querySelectorAll('.filter-btn');
+const blogCards = document.querySelectorAll('.blog-card');
+const searchInput = document.getElementById('blog-search-input');
+const searchButton = document.getElementById('blog-search-btn');
+
+// Function to filter blog cards
+function filterBlogCards(filterValue, searchTerm = '') {
+    blogCards.forEach(card => {
+        // First hide all cards to reset
+        card.classList.add('hidden');
+        
+        // Get card content for search
+        const cardTitle = card.querySelector('.blog-title').textContent.toLowerCase();
+        const cardExcerpt = card.querySelector('.blog-excerpt').textContent.toLowerCase();
+        const cardCategory = card.getAttribute('data-category').toLowerCase();
+        const cardContent = cardTitle + ' ' + cardExcerpt + ' ' + cardCategory;
+        
+        // Check if card matches both filter and search criteria
+        const matchesFilter = filterValue === 'all' || card.getAttribute('data-category') === filterValue;
+        const matchesSearch = searchTerm === '' || cardContent.includes(searchTerm.toLowerCase());
+        
+        // Show cards based on filter and search
+        setTimeout(() => {
+            if (matchesFilter && matchesSearch) {
+                card.classList.remove('hidden');
+                // Add animation
+                card.style.animation = 'fadeIn 0.5s forwards';
+            } else {
+                card.style.animation = '';
+            }
+        }, 300);
+    });
+}
+
+// Initialize filter buttons
+if (filterButtons.length > 0 && blogCards.length > 0) {
+    // Get current active filter
+    let currentFilter = document.querySelector('.filter-btn.active')?.getAttribute('data-filter') || 'all';
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Update current filter
+            currentFilter = this.getAttribute('data-filter');
+            
+            // Apply filtering with current search term
+            filterBlogCards(currentFilter, searchInput.value);
+        });
+    });
+    
+    // Initialize search functionality
+    if (searchInput && searchButton) {
+        // Search on button click
+        searchButton.addEventListener('click', function() {
+            filterBlogCards(currentFilter, searchInput.value);
+        });
+        
+        // Search on enter key
+        searchInput.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') {
+                filterBlogCards(currentFilter, this.value);
+            }
+        });
+        
+        // Live search (optional, can be resource-intensive)
+        searchInput.addEventListener('input', function() {
+            // Debounce to avoid too many updates
+            clearTimeout(this.debounceTimer);
+            this.debounceTimer = setTimeout(() => {
+                filterBlogCards(currentFilter, this.value);
+            }, 300);
+        });
+    }
+}
     
     // Add scroll animations
     const observerOptions = {
@@ -113,13 +321,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     typeWriter(heroText, heroTarget);
 
-    const navToggle = document.querySelector('.nav-toggle');
-    const navList = document.querySelector('.nav-list');
-    if (navToggle && navList) {
-        navToggle.addEventListener('click', function () {
-            navList.classList.toggle('show');
-        });
-    }
+    // Additional navigation setup (avoiding duplicate)
+    // This is handled above in the main navigation section
 });
 
 // Update active navigation link
@@ -375,50 +578,46 @@ document.addEventListener('DOMContentLoaded', function() {
     addScrollAnimations();
 });
 
-// Create floating particles in header
+// Create optimized floating particles in header
 function createParticles() {
     const header = document.querySelector('.header');
-    if (!header) return;
-    
-    for (let i = 0; i < 15; i++) {
+    // Create optimized floating particles in header
+    for (let i = 0; i < 6; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
         particle.style.cssText = `
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.6);
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.4);
             border-radius: 50%;
             pointer-events: none;
-            animation: float-particle ${3 + Math.random() * 4}s ease-in-out infinite;
+            animation: float-particle ${5 + Math.random() * 3}s ease-in-out infinite;
             animation-delay: ${Math.random() * 2}s;
             left: ${Math.random() * 100}%;
             top: ${Math.random() * 100}%;
+            will-change: transform;
         `;
         header.appendChild(particle);
     }
 }
 
-// Add scroll-triggered animations
+// Optimized scroll-triggered animations
 function addScrollAnimations() {
     const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.2,
+        rootMargin: '0px 0px -30px 0px'
     };
     
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate-in');
-                
-                // Add staggered animation for cards
-                if (entry.target.classList.contains('about-card')) {
-                    entry.target.style.animationDelay = '0.2s';
-                }
+                observer.unobserve(entry.target); // Stop observing once animated
             }
         });
     }, observerOptions);
     
-    const animateElements = document.querySelectorAll('.about-card, .skills-update-message, .projects-update-message, .contact-item');
+    const animateElements = document.querySelectorAll('.about-card, .skills-update-message, .projects-update-message');
     animateElements.forEach(el => observer.observe(el));
 }

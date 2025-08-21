@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="Ishan Paudel.png">
 </head>
+
 <body>
     <!-- Header Section -->
     <header class="header">
@@ -19,10 +21,14 @@
                     <p class="subtitle">Software Developer & Technology Enthusiast</p>
                 </div>
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/in/ishanpaudel/" target="_blank"class="social-link"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/Ishan-paudel"target="_blank" class="social-link"><i class="fab fa-github"></i></a>
-                    <a href="https://x.com/PaudelIshan00" target="_blank"class="social-link"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/ishanpaudel00/"target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/ishanpaudel/" target="_blank" class="social-link"><i
+                            class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Ishan-paudel" target="_blank" class="social-link"><i
+                            class="fab fa-github"></i></a>
+                    <a href="https://x.com/PaudelIshan00" target="_blank" class="social-link"><i
+                            class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/ishanpaudel00/" target="_blank" class="social-link"><i
+                            class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
@@ -31,15 +37,16 @@
     <!-- Navigation -->
     <nav class="navigation">
         <div class="container nav-container">
+            <a href="#home" class="nav-logo"><i class="fas fa-code"></i> Ishan Paudel</a>
             <button class="nav-toggle" aria-label="Open menu">
                 <i class="fas fa-bars"></i>
             </button>
             <ul class="nav-list">
-                <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#home" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#about" class="nav-link"><i class="fas fa-user"></i> About</a></li>
+                <li><a href="#skills" class="nav-link"><i class="fas fa-laptop-code"></i> Skills</a></li>
+                <li><a href="#projects" class="nav-link"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -53,12 +60,12 @@
                     <div class="hero-left">
                         <span class="hero-subtitle"> Welcome! </span>
                         <h4 class="hero-title"> I am Ishan Paudel </h4>
-                        <p class="hero-desc" id="typed-desc"></p>
-                        <span id="typed-desc-extra" class="hero-desc"></span>
-                        <br>
+                        
+                        
+                        <p class="hero-tagline">Turning ideas into elegant digital experiences with passion and precision</p>
                         <div class="hero-actions">
-                            <a href="#projects" class="hero-btn primary">View My Work</a>
-                            <a href="#contact" class="hero-btn secondary">Get In Touch</a>
+                            <a href="#projects" class="hero-btn primary"><i class="fas fa-eye"></i> View My Work</a>
+                            <a href="#contact" class="hero-btn secondary"><i class="fas fa-paper-plane"></i> Get In Touch</a>
                         </div>
                     </div>
                     <div class="hero-right">
@@ -68,8 +75,7 @@
                     </div>
                 </div>
             </section>
-            <br><br>
-
+<br><br><br><br>
             <!-- About Section -->
             <section id="about" class="about-section">
                 <h2 class="section-title">About Me</h2>
@@ -79,7 +85,9 @@
                             <i class="fas fa-user-graduate"></i>
                         </div>
                         <h3>Education</h3>
-                        <p>Currently studying in Class 11 at SOS HGS Gandaki, Pokhara, specializing in Science stream with focus on Computer Science. Passionate about technology and programming, driving me to deepen my understanding and aspire for further studies in Computer Science.</p>
+                        <p>Currently studying in Class 11 at SOS HGS Gandaki, Pokhara, specializing in Science stream
+                            with focus on Computer Science. Passionate about technology and programming, driving me to
+                            deepen my understanding and aspire for further studies in Computer Science.</p>
                     </div>
                     <div class="about-card">
                         <div class="card-icon">
@@ -99,28 +107,39 @@
             <!-- Skills Section -->
             <section id="skills" class="skills-section">
                 <h2 class="section-title">Skills & Technologies</h2>
-                <div class="skills-update-message">
-                    <div class="update-icon">
-                        <i class="fas fa-tools"></i>
+                <div class="skills-container">
+                    <div class="skills-update-message">
+                        <div class="particles-container" id="skills-particles"></div>
+                        <div class="update-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="update-title">Skills Section</h3>
+                        <p class="update-text typing-animation">To Be Updated</p>
+                        <p class="update-description">This section will showcase my technical skills, programming languages,
+                            frameworks, and tools as I continue to learn and grow in my development journey.</p>
                     </div>
-                    <h3 class="update-title">Skills Section</h3>
-                    <p class="update-text">To Be Updated</p>
-                    <p class="update-description">This section will showcase my technical skills, programming languages, frameworks, and tools as I continue to learn and grow in my development journey.</p>
                 </div>
             </section>
 
             <!-- Projects Section -->
             <section id="projects" class="projects-section">
                 <h2 class="section-title">Featured Projects</h2>
-                <div class="projects-update-message">
-                    <div class="update-icon">
-                        <i class="fas fa-rocket"></i>
+                <div class="projects-container">
+                    <div class="projects-update-message">
+                        <div class="particles-container" id="projects-particles"></div>
+                        <div class="update-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="update-title">Projects Section</h3>
+                        <p class="update-text typing-animation">To Be Updated</p>
+                        <p class="update-description">This section will showcase my completed projects, applications, and
+                            development work as I build and create innovative solutions.</p>
                     </div>
-                    <h3 class="update-title">Projects Section</h3>
-                    <p class="update-text">To Be Updated</p>
-                    <p class="update-description">This section will showcase my completed projects, applications, and development work as I build and create innovative solutions.</p>
                 </div>
             </section>
+
+            <!-- Placeholder for future content -->
+            <div class="section-spacer"></div>
 
             <!-- Contact Section -->
             <section id="contact" class="contact-section">
@@ -128,7 +147,8 @@
                 <div class="contact-content">
                     <div class="contact-info">
                         <h3>Let's Connect</h3>
-                        <p>I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology and programming.</p>
+                        <p>I'm always open to discussing new opportunities, interesting projects, or just having a chat
+                            about technology and programming.</p>
                         <div class="contact-details">
                             <div class="contact-item">
                                 <i class="fas fa-envelope"></i>
@@ -147,35 +167,42 @@
                     <div class="contact-form">
                         <form id="contactForm">
                             <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" id="name" name="name" required>
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
                             </div>
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" required>
+                                <label for="email">Your Email</label>
+                                <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
                             </div>
                             <div class="form-group">
                                 <label for="subject">Subject</label>
-                                <input type="text" id="subject" name="subject" required>
+                                <input type="text" id="subject" name="subject" placeholder="What's this about?" required>
                             </div>
                             <div class="form-group">
-                                <label for="message">Message</label>
-                                <textarea id="message" name="message" rows="5" required placeholder="Write your message here..."></textarea>
+                                <label for="message">Your Message</label>
+                                <textarea id="message" name="message" rows="5" placeholder="Tell me about your project, ideas, or just say hello..." required></textarea>
                             </div>
-                            <button type="submit" class="send-btn">Send Message</button>
+                            <button type="submit" class="send-btn">
+                                <span class="btn-text">Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                                <span class="btn-loading" style="display: none;">
+                                    <i class="fas fa-spinner fa-spin"></i> Sending...
+                                </span>
+                            </button>
                         </form>
                     </div>
                 </div>
             </section>
         </div>
     </main>
-
+    <br>
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-main">
                     <div class="footer-info">
+
                         <h3>Ishan Paudel</h3>
                         <p>Software Developer & Technology Enthusiast</p>
                         <p>Passionate about creating innovative solutions and learning new technologies</p>
@@ -188,7 +215,7 @@
                     </div>
                 </div>
                 <div class="footer-bottom">
-                    <p>&copy; 2024 Ishan Paudel. All rights reserved.</p>
+                    <p>2024 Ishan Paudel. All rights reserved.</p>
                     <div class="footer-links">
                         <a href="#home">Home</a>
                         <a href="#about">About</a>
@@ -202,5 +229,111 @@
     </footer>
 
     <script src="script.js"></script>
+
+    <!-- Particle Animation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Create particles for skills section
+            createParticles('skills-particles', 8, ['#6ea5f2', '#06b6d4', '#3b82f6', '#8b5cf6']);
+
+            // Create particles for projects section
+            createParticles('projects-particles', 8, ['#f59e0b', '#ef4444', '#ec4899', '#8b5cf6']);
+
+            // Function to create particles
+            function createParticles(containerId, count, colors) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+
+                for (let i = 0; i < count; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+
+                    // Random position
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+
+                    // Random size between 5px and 20px
+                    const size = Math.random() * 15 + 5;
+
+                    // Random color from the provided colors array
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+
+                    // Random animation duration between 15s and 30s
+                    const duration = Math.random() * 15 + 15;
+
+                    // Random animation delay
+                    const delay = Math.random() * 5;
+
+                    // Apply styles
+                    particle.style.left = `${posX}%`;
+                    particle.style.top = `${posY}%`;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.backgroundColor = color;
+                    particle.style.boxShadow = `0 0 ${size / 2}px ${color}`;
+                    particle.style.animationDuration = `${duration}s`;
+                    particle.style.animationDelay = `${delay}s`;
+
+                    // Add to container
+                    container.appendChild(particle);
+                }
+            }
+
+            // Add hover effect to update messages
+            const updateMessages = document.querySelectorAll('.skills-update-message, .projects-update-message');
+            updateMessages.forEach(message => {
+                message.addEventListener('mouseenter', function () {
+                    const particles = this.querySelectorAll('.particle');
+                    particles.forEach(particle => {
+                        particle.style.animationDuration = '5s';
+                        particle.style.opacity = '0.8';
+                    });
+                });
+
+                message.addEventListener('mouseleave', function () {
+                    const particles = this.querySelectorAll('.particle');
+                    particles.forEach(particle => {
+                        const duration = Math.random() * 15 + 15;
+                        particle.style.animationDuration = `${duration}s`;
+                        particle.style.opacity = '0.6';
+                    });
+                });
+            });
+
+            // Implement typing animation
+            const typingElements = document.querySelectorAll('.typing-animation');
+            typingElements.forEach(element => {
+                const text = element.textContent;
+                element.textContent = '';
+                element.style.opacity = '1';
+
+                let i = 0;
+                const typingInterval = setInterval(() => {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(typingInterval);
+
+                        // After typing completes, start a blinking cursor effect
+                        setTimeout(() => {
+                            // Reset and retype after a delay
+                            element.textContent = '';
+                            i = 0;
+                            const retypeInterval = setInterval(() => {
+                                if (i < text.length) {
+                                    element.textContent += text.charAt(i);
+                                    i++;
+                                } else {
+                                    clearInterval(retypeInterval);
+                                }
+                            }, 100);
+                        }, 3000);
+                    }
+                }, 100);
+            });
+        });
+    </script>
 </body>
+
 </html>
